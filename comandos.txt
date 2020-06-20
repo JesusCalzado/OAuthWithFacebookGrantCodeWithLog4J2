@@ -1,0 +1,40 @@
+#Crea el proyecto(subir un directorio antes de ejecutar)
+mvn archetype:generate -DgroupId=com.calzado -DartifactId=OAuthWithFacebookGrantCode -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+#Ejecutar la aplicación con el plugin de maven
+mvn tomee:run
+
+#Ejecutar la aplicación guardando el stdout y stderr a un sólo archivo
+mvn tomee:run > trace.log 2>&1
+
+#Ejecutar la aplicación activando el class loader y el stdout y stderr a un sólo archivo
+MAVEN_OPTS="-verbose" mvn tomee:run > trace.log 2>&1
+
+#Generar un almacen JKS con un certificado autofirmado
+
+keytool -genkey -alias tomcat -keyalg RSA
+
+#Comando para descubrir parámetros del plugin
+mvn tomee:help -Ddetail=true -Dgoal=run
+
+mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail(este tiene la phase a la cual puede estar ligada)
+
+#Generar un heap dump in 32 bits
+jmap -dump:format=b,file=heapdump_oauthFacebookAuthorizacionCode pid
+
+#Generar un thread dump
+jstack pid
+
+#Comandos para análisis
+mvn help:describe -Dcmd=deploy(Lista todas las fases del ciclo de vida default del tipo de package donde nos encontremos(jar,war,ear)
+mvn dependency:build-classpath
+mvn help:effective-pom
+mvn help:system
+mvn dependency:analyze
+mvn dependency:resolve-plugins
+mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
+
+mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
+
+mvn tomcat7:run -Djava.util.logging.config.file=src/main/tomcatconf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+./mvn.bat tomcat7:run -Djava.util.logging.config.file=src/main/tomcatconf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
