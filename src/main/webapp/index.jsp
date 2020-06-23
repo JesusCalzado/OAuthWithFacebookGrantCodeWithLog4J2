@@ -12,7 +12,7 @@
  var AUTH_ENDPOINT = "https://www.facebook.com/dialog/oauth";
  var RESPONSE_TYPE = "code";
  var CLIENT_ID = "537451827134465";
- var REDIRECT_URI = "https://calzado.com/callback";
+ var REDIRECT_URI = "https://calzado.com" + "<%=request.getContextPath()%>"+ "/callback";
  var SCOPE = "public_profile";
  // Build authorization request endpoint
  var requestEndpoint = AUTH_ENDPOINT + "?" +

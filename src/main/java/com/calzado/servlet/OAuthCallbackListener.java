@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,16 +17,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-//import org.apache.juli.*;
-//import org.apache.juli.ClassLoaderLogManager;
-//import org.apache.naming.factory.ResourceLinkFactory;
 
 
+@WebServlet(name="OAuthCallbackListener", urlPatterns={"/callback"})
 public class OAuthCallbackListener extends HttpServlet {
 private static final long serialVersionUID = 1L;
 final String TOKEN_ENDPOINT ="https://graph.facebook.com/oauth/access_token";
 final String GRANT_TYPE = "authorization_code";
-final String REDIRECT_URI = "https://calzado.com/callback";
+final String REDIRECT_URI = "https://calzado.com/prueba/callback";
 final String CLIENT_ID = "537451827134465";
 final String CLIENT_SECRET = "e905a9b3b2b16fd28cac000bc4ec00a1";
 

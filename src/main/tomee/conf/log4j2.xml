@@ -4,6 +4,9 @@
     <Console name="stdout" target="SYSTEM_OUT">
 		<PatternLayout pattern="[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][Class logger: %C][name logger: %c] %msg%n" charset="UTF-8"/>
     </Console>
+	<Console name="stderr" target="SYSTEM_ERR">
+		<PatternLayout pattern="[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][Class logger: %C][name logger: %c] %msg%n" charset="UTF-8"/>
+    </Console>
 	<RollingFile name="appenderForApplications" fileName="${sys:catalina.home}/logs/${sys:fileNameForLogApplication}" 
 				 filePattern="${sys:catalina.home}/logs/${sys:fileNameForLogApplication}.%d{dd-MM-yyyy}.%i.log.gz" ignoreExceptions="false">
 		<PatternLayout charset="UTF-8">
@@ -25,14 +28,15 @@
   <Loggers>
     <Root level="INFO">
       <AppenderRef ref="stdout"/>
+	  <AppenderRef ref="stderr"/>
     </Root>	
-	<AsyncLogger name="org" level="TRACE" additivity="false">
+	<AsyncLogger name="org" level="debug" additivity="false">
 		<AppenderRef ref="appenderForApplications"/>
 	</AsyncLogger>
-	<AsyncLogger name="OpenEJB" level="TRACE" additivity="false">
+	<AsyncLogger name="OpenEJB" level="INFO" additivity="false">
 		<AppenderRef ref="appenderForApplications"/>
 	</AsyncLogger>
-	<Logger name="org.apache.tomcat.util.net.NioEndpoint" level="TRACE">
+	<Logger name="org.apache.tomcat.util.net.NioEndpoint" level="ERROR">
 		<AppenderRef ref="appenderForApplications"/>
 	</Logger>
 	<Logger name="org.apache.tomcat.util.digester.Digester" level="ERROR">
