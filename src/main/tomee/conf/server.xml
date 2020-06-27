@@ -55,7 +55,7 @@
   <Service name="Catalina">
     <Connector port="443" protocol="HTTP/1.1" SSLEnabled="true"
                 scheme="https" secure="true"
-                clientAuth="false" sslProtocol="TLS" keystorePass="123456" keystoreFile="${catalina.base}/conf/keystoreJKS"/>
+                clientAuth="false" sslProtocol="TLS" keystorePass="123456" keystoreFile="${catalina.base}/conf/keystore.jks"/>
 
 
     <!--The connectors can use a shared executor, you can define one or more named thread pools-->
@@ -157,6 +157,7 @@
 
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
+           <Context path="/prueba" reloadable="true"/> 
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->

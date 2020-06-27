@@ -32,6 +32,7 @@ mvn help:effective-pom
 mvn help:system
 mvn dependency:analyze
 mvn dependency:resolve-plugins
+mvn dependency:sources
 mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
 
 mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
