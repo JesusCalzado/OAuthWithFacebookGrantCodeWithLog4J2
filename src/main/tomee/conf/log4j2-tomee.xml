@@ -7,16 +7,14 @@
 	<Console name="stderr" target="SYSTEM_ERR">
 		<PatternLayout pattern="[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][Class logger: %C][name logger: %c] %msg%n" charset="UTF-8"/>
     </Console>
-	<RollingFile name="appenderForServer" fileName="${sys:catalina.home}/logs/${sys:fileNameForServerLog}" 
-				 filePattern="${sys:catalina.home}/logs/${sys:fileNameForServerLog}.%d{dd-MM-yyyy}.%i.log.gz" ignoreExceptions="false">
+	<RollingFile name="appenderForServer" fileName="logs/${sys:nameForLogServer}" 
+				 filePattern="logs/${sys:nameForLogServer}.%d{dd-MM-yyyy}.%i.log.gz" ignoreExceptions="false">
 		<PatternLayout charset="UTF-8">
 			<!--Activar este patrón cuando se quiere saber el nombre de la clase del logger -->
 			<!--<Pattern>[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][Class logger: %C][name logger: %c] %msg%n</Pattern>-->
 			<Pattern>[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][name logger: %c] %msg%n</Pattern>
 		</PatternLayout>
 		<Policies>
-			<!--Se comenta esta política para que no salga el error de  java.nio.file.FileSystemException el archivo-->
-			<!--application.log está siendo utilizado por otro proceso-->
 			<OnStartupTriggeringPolicy/>
 			<TimeBasedTriggeringPolicy/>
 			<SizeBasedTriggeringPolicy size="20 MB" />			

@@ -12,7 +12,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 public class MyServletContextListener implements ServletContextListener {
 
      public void contextInitialized(final ServletContextEvent sce) {
-          System.out.println("#####contextInitialized");
+          System.out.println("#####contextInitialized ");
 
           try {
                ApplicationProperties.getInstance();

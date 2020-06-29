@@ -11,9 +11,9 @@
 	    <log4j2.version>2.13.3</log4j2.version>
 	    <disruptor.version>3.4.2</disruptor.version>
       <commons-logging.version>1.2</commons-logging.version>
-	    <fileNameForServerLog>server.log</fileNameForServerLog>
-      <fileNameForOAuthWithFacebookGrantCodeLog>OAuthWithFacebookGrantCode.log</fileNameForOAuthWithFacebookGrantCodeLog>
-      <contextForApplication>/prueba</contextForApplication>
+	    <nameForLogServer>tomee-server.log</nameForLogServer>
+      <nameForLogOAuthWithFacebookGrantCode>OAuthWithFacebookGrantCode.log</nameForLogOAuthWithFacebookGrantCode>
+      <contextForOAuthWithFacebookGrantCode>/prueba</contextForOAuthWithFacebookGrantCode>
   </properties>
   <dependencies>
   <dependency>
@@ -40,14 +40,14 @@
   </dependency>  
   </dependencies>
   <build>
-    <finalName>oauthclientAuthorizationCodeGrant</finalName>
+  <finalName>oauthclientAuthorizationCodeGrant</finalName>
 	<plugins>
 		<plugin>
 			<groupId>org.apache.tomee.maven</groupId>
 			<artifactId>tomee-maven-plugin</artifactId>
 			<version>7.1.3</version>
 			<configuration>				
-				<context>${contextForApplication}</context>								
+				<context>${contextForOAuthWithFacebookGrantCode}</context>								
 				<tomeeHttpPort>80</tomeeHttpPort>
 				<tomeeHttpsPort>443</tomeeHttpsPort>			
         <debug>false</debug>
@@ -62,11 +62,11 @@
           <classpath>commons-logging:commons-logging:${commons-logging.version}</classpath>
 				</classpaths>
 				<systemVariables>
-					<log4j.configurationFile>${openejb.base}/conf/log4j2.xml</log4j.configurationFile>
+					<log4j.configurationFile>${openejb.base}/conf/log4j2-tomee.xml,${openejb.base}/conf/log4j2-oauthwithfacebookgrantcode.xml</log4j.configurationFile>
 					<java.util.logging.manager>org.apache.logging.log4j.jul.LogManager</java.util.logging.manager>
-          <contextForApplication>${contextForApplication}</contextForApplication>
-					<fileNameForServerLog>${fileNameForServerLog}</fileNameForServerLog>          
-          <fileNameForOAuthWithFacebookGrantCodeLog>${fileNameForOAuthWithFacebookGrantCodeLog}</fileNameForOAuthWithFacebookGrantCodeLog>
+          <contextForOAuthWithFacebookGrantCode>${contextForOAuthWithFacebookGrantCode}</contextForOAuthWithFacebookGrantCode>
+					<nameForLogServer>${nameForLogServer}</nameForLogServer>          
+          <nameForLogOAuthWithFacebookGrantCode>${nameForLogOAuthWithFacebookGrantCode}</nameForLogOAuthWithFacebookGrantCode>
 				</systemVariables>
 			</configuration>
 		</plugin>

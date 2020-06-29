@@ -10,23 +10,15 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 
 public class ApplicationProperties {
 
-    private static ApplicationProperties instance = null;
-    private static PropertiesConfiguration configuration = null;
+    private static ApplicationProperties instance;
+    private static PropertiesConfiguration configuration;
 
-    public ApplicationProperties() throws IOException, ConfigurationException {
-       
-        // Load a properties file (which may contain variables)
-Parameters params = new Parameters();
-FileBasedConfigurationBuilder<PropertiesConfiguration> builder =
-    new FileBasedConfigurationBuilder<PropertiesConfiguration>(PropertiesConfiguration.class)
-    .configure(params.fileBased()
-        .setFile(new File("configApplication.properties")));
-PropertiesConfiguration config = builder.getConfiguration();
-
-// Perform interpolation on all variables
-configuration =  (PropertiesConfiguration) config.interpolatedConfiguration();
-    
-        
+    public ApplicationProperties() throws IOException, ConfigurationException {       
+     Parameters param = new Parameters();   
+     FileBasedConfigurationBuilder<PropertiesConfiguration> builder =
+        new FileBasedConfigurationBuilder<PropertiesConfiguration>(PropertiesConfiguration.class)
+        .configure(param.fileBased().setFile(new File("configApplication.properties")));    
+     configuration = (PropertiesConfiguration) builder.getConfiguration().interpolatedConfiguration();    
     }
 
     public static ApplicationProperties getInstance() throws ConfigurationException {

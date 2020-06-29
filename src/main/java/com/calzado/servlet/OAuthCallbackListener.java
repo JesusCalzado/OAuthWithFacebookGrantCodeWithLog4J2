@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.calzado.util.ApplicationProperties;
-
+import com.calzado.util.Constants;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
@@ -22,9 +22,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 
-@WebServlet(name="OAuthCallbackListener", urlPatterns={"/callback"})
+@WebServlet(name="OAuthCallbackListener", urlPatterns={Constants.URL_FOR_SERVLET_OAUTHCALLBACKLISTENER})
 public class OAuthCallbackListener extends HttpServlet {
-private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
 	String TOKEN_ENDPOINT = ApplicationProperties.getValue("TOKEN_ENDPOINT").replaceAll("\"", "");
 	String GRANT_TYPE = ApplicationProperties.getValue("GRANT_TYPE").replaceAll("\"", "");
 	String REDIRECT_URI = ApplicationProperties.getValue("REDIRECT_URI").replaceAll("\"", "");

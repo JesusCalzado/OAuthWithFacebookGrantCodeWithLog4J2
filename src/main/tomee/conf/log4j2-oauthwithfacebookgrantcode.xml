@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
   <Appenders>    
-	<RollingFile name="appenderForOAuthWithFacebookGrantCode" fileName="${sys:catalina.home}/logs/${sys:fileNameForOAuthWithFacebookGrantCodeLog}" 
-				 filePattern="${sys:catalina.home}/logs/${sys:fileNameForOAuthWithFacebookGrantCodeLog}.%d{dd-MM-yyyy}.%i.log.gz" ignoreExceptions="false">
+	<RollingFile name="appenderForOAuthWithFacebookGrantCode" fileName="logs/${sys:nameForLogOAuthWithFacebookGrantCode}" 
+				 filePattern="logs/${sys:nameForLogOAuthWithFacebookGrantCode}.%d{dd-MM-yyyy}.%i.log.gz" ignoreExceptions="false">
 		<PatternLayout charset="UTF-8">
 			<!--Activar este patrón cuando se quiere saber el nombre de la clase del logger -->
 			<!--<Pattern>[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][Class logger: %C][name logger: %c] %msg%n</Pattern>-->
 			<Pattern>[%d{HH:mm:ss.SSS}][Thread:%t][%-5level][name logger: %c] %msg%n</Pattern>
 		</PatternLayout>
-		<Policies>
-			<!--Se comenta esta política para que no salga el error de  java.nio.file.FileSystemException el archivo-->
-			<!--application.log está siendo utilizado por otro proceso-->
+		<Policies>			
 			<OnStartupTriggeringPolicy/>
 			<TimeBasedTriggeringPolicy/>
 			<SizeBasedTriggeringPolicy size="20 MB" />			
