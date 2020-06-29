@@ -14,28 +14,24 @@ MAVEN_OPTS="-verbose" mvn tomee:run > trace.log 2>&1
 
 keytool -genkey -alias tomcat -keyalg RSA
 
-#Comando para descubrir parámetros del plugin
-mvn tomee:help -Ddetail=true -Dgoal=run
+#Comando para descubrir parámetros de configuración de todos los goals del plugin
+mvn help:describe -Dplugin=tomee -Ddetail
 
-mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail(este tiene la phase a la cual puede estar ligada)
-
-#Generar un heap dump in 32 bits
-jmap -dump:format=b,file=heapdump_oauthFacebookAuthorizacionCode pid
-
-#Generar un thread dump.
-jstack pid
+#Comando para descubrir parámetros de configuración de un goal en particular del plugin
+mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
 
 #Comandos para análisis
-mvn help:describe -Dcmd=deploy(Lista todas las fases del ciclo de vida default del tipo de package donde nos encontremos(jar,war,ear)
+mvn help:describe -Dcmd=deploy(Lista todas las fases del ciclo de vida default del tipo de package donde nos encontremos(jar,war,ear) para nuestro caso es un WAR)
 mvn dependency:build-classpath
 mvn help:effective-pom
 mvn help:system
 mvn dependency:analyze
 mvn dependency:resolve-plugins
 mvn dependency:sources
-mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
 
-mvn help:describe -Dplugin=tomee -Dgoal=run -Ddetail
+#################HEAP Y THREAD DUMP
+#Generar un heap dump in 32 bits
+jmap -dump:format=b,file=heapdump_oauthFacebookAuthorizacionCode pid
 
-mvn tomcat7:run -Djava.util.logging.config.file=src/main/tomcatconf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
-./mvn.bat tomcat7:run -Djava.util.logging.config.file=src/main/tomcatconf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+#Generar un thread dump.
+jstack pid
